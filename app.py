@@ -1,14 +1,14 @@
-from flask import Flask, flash, request, redirect, render_template
+from flask import Flask, flash, request, redirect, render_template, send_from_directory
 from werkzeug.utils import secure_filename
 import sys
 import os
 
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
-sys.path.append(ROOT_DIR + '/segment')
-from segment.predict import main, parse_opt
-
-UPLOAD_FOLDER = ROOT_DIR + '/uploads'
+UPLOAD_FOLDER = ROOT_DIR + '\\uploads'
 ALLOWED_EXTENSIONS = {'jpg', 'mp4'}
+
+sys.path.append(ROOT_DIR + '\\segment')
+from segment.predict import main, parse_opt
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -38,7 +38,8 @@ def upload_file():
             opt = parse_opt()
             opt.source = 'uploads\\' + filename
             opt.weights = ['Weights\\best.pt']
-            main(opt)
+            result_dir = main(opt)
+            return send_from_directory(result_dir, filename, as_attachment=True)
     return render_template('index.html')
 
 
