@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>YOLO V7</title>
+    <title>YOLO V7 Uploader</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body>
+<body class="content">
 
 <h1>Upload new File</h1>
-    <form method=post enctype=multipart/form-data>
-      <input type=file name=file>
-      <input type=submit value=Upload>
-    </form>
+<form method=post enctype=multipart/form-data>
+    <input type=file name=file>
+    <input type=submit value=Upload>
+</form>
 
 </body>
 </html>
