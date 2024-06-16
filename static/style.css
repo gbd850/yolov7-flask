@@ -2,5 +2,6 @@ html { font-family: sans-serif; background: #eee; padding: 1rem; }
 body { max-width: 960px; margin: 0 auto; background: white; }
 h1 { font-family: serif; color: #377ba8; margin: 1rem 0; }
 .content { text-align: center; margin 0 auto; padding: 1rem }
+.flash {margin: 0; color: red; list-style: none;}
 input.danger { color: #cc2f2e; }
 input[type=submit] { align-self: start; min-width: 10em; }

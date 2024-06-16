@@ -11,6 +11,7 @@ sys.path.append(ROOT_DIR + '\\segment')
 from segment.predict import main, parse_opt
 
 app = Flask(__name__)
+app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 
@@ -40,6 +41,8 @@ def upload_file():
             opt.weights = ['Weights\\best.pt']
             result_dir = main(opt)
             return send_from_directory(result_dir, filename, as_attachment=True)
+        flash('Selected file with forbidden extension')
+        return redirect(request.url)
     return render_template('index.html')
 
 
